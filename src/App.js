@@ -1,46 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import styled from 'styled-components';
 
-import data from './data'
-import MembersList from './components/MemberCard'
 import Form from './components/Form'
-
-const Entry = styled.div`
-display:flex;
-justify-content: space-around;
-flex-wrap:wrap;
-`
-const FormStyle = styled.div`
-width:100%;
-display:flex;
-justify-content: space-around;
-`
 
 function App() {
 
-  const [members, setMembers] = useState([])
+  const [team, setTeam] = useState([])
+  const [memberToEdit, setMemberToEdit] = useState({ name: '', email: '', role: '' })
 
-  useEffect(() => {
-    setMembers(data)
-  }, [])
-
-  const addTeamMate = mate => {
-    const newMate = setMembers([...members, mate])
+  const editMember = (memberToAdd) => {
+    setMemberToEdit(memberToAdd);
+    console.log(memberToAdd);
   }
 
   return (
     <div className="App">
-      <FormStyle>
-        <Form addTeamMate={addTeamMate} />
-      </FormStyle>
-      <Entry>
-        {members.map(member => {
-          return <MembersList key={member.id} info={member} />
-        })}
-      </Entry>
+      {team.map((element, index) => {
+        return (
+
+          <div>
+            <p>{element.name}</p>
+            <p>{element.email}</p>
+            <p>{element.role}</p>
+            <button onClick={() => editMember(element)}>Edit</button>
+          </div>
+        );
+      })}
+      <Form team={team} setTeam={setTeam} memberToEdit={memberToEdit} />
     </div>
-  );
+  )
 }
 
 export default App; 

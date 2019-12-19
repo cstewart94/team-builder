@@ -6,7 +6,7 @@ background:GAINSBORO;
 border-radius: 5px 50px;
 margin: 1%;
 padding: 0.5% 1%;
-width: 20%;
+width: 26%;
 `
 const Title = styled.h1`
 color:red;
@@ -15,7 +15,7 @@ const Info = styled.p`
 
 `
 
-const MembersList = props => {
+const MembersCard = props => {
   return (
     <MemberCard>
       <Title>{props.info.name}</Title>
@@ -28,4 +28,4 @@ const MembersList = props => {
   );
 };
 
-export default MembersList; 
+export default MembersCard; 
